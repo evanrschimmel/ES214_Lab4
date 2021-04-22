@@ -2,6 +2,8 @@ clear all
 close all
 clc
 
+load('residual_swing_data_single');
+
 mp = 68.5e-3; %kg
 mw = 88e-3; %kg
 lp = 43.2e-2; %m
@@ -45,7 +47,8 @@ for offset=4:0.1:39 %cm
 end
 
 figure
-plot(weightoffset,theta_max)
+plot(weightoffset,theta_max,'b-',Lwcg_exp,res_swing_amp_single_exp,'ro')
 axis([0 40 5 11]);
 xlabel('Moveable weight offset (cm)');
 ylabel('Residual swing amplitude (deg)');
+legend('Simulation','Experiment');

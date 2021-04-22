@@ -2,6 +2,8 @@ clear all
 close all
 clc
 
+load('residual_swing_data_double');
+
 mp = 68.5e-3; %kg
 mw = 88e-3; %kg
 lp = 43.2e-2; %m
@@ -22,7 +24,7 @@ J = ((mp*lp^2)/12)+mp*(lpcg^2)+(1/2)*mw*((dw/2)^2)+mw*(lwcg^2);
 k = g*(mp*lpcg+mw*lwcg);
 C = mp*lpcg+mw*lwcg;
 
-sim('Schimmel_Evan_lab_4_model_single')
+sim('Schimmel_Evan_lab_4_model_double')
 theta_deg=(180/pi)*(theta_rad);
 
 figure
@@ -45,7 +47,8 @@ for offset=4:0.1:39 %cm
 end
 
 figure
-plot(weightoffset,theta_max)
+plot(weightoffset,theta_max,'b-',Lwcg_exp,res_swing_amp_double_exp,'ro')
 axis([0 40 0 1.8]);
 xlabel('Moveable weight offset (cm)');
 ylabel('Residual swing amplitude (deg)');
+legend('Simulation','Experiment');
